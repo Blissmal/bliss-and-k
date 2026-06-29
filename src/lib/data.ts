@@ -216,7 +216,7 @@ export const TEAM = [
   },
   {
     initials: "K",
-    name: "K — Business Lead",
+    name: "Solomon Kiplimo",
     role: "Client Relations & Contracts",
     color: "#7C3AED",
     bg: "rgba(124,58,237,0.12)",
