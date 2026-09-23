@@ -10,79 +10,30 @@ interface PageHeaderProps {
   crumbs?: Crumb[];
 }
 
-export default function PageHeader({ badge, title, titleAccent, description, crumbs }: PageHeaderProps) {
+export default function PageHeader({ title, titleAccent, description, crumbs }: PageHeaderProps) {
   return (
-    <section className="relative pt-36 pb-20 px-6 overflow-hidden">
-      {/* Decorative gradient */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-20 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(60,80,224,0.4) 0%, transparent 65%)",
-          filter: "blur(60px)",
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Breadcrumbs */}
+    <section className="relative z-10 overflow-hidden px-6 pb-20 pt-40 lg:px-12">
+      <span aria-hidden="true" className="orb-css !z-0 -right-20 top-20 hidden h-72 w-72 opacity-80 blur-[3px] md:block" />
+      <div className="relative z-10 mx-auto max-w-7xl">
         {crumbs && crumbs.length > 0 && (
-          <nav className="flex items-center gap-2 mb-6">
+          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm">
             {crumbs.map((c, i) => (
-              <span key={i} className="flex items-center gap-2">
-                {i > 0 && <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>}
+              <span key={c.label} className="flex items-center gap-2">
+                {i > 0 && <span className="text-white/30" aria-hidden="true">/</span>}
                 {c.href ? (
-                  <Link
-                    href={c.href}
-                    className="text-xs transition-colors hover:text-white"
-                    style={{ color: "rgba(255,255,255,0.38)" }}
-                  >
-                    {c.label}
-                  </Link>
+                  <Link href={c.href} className="text-white/60 transition-colors hover:text-white">{c.label}</Link>
                 ) : (
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>
-                    {c.label}
-                  </span>
+                  <span aria-current="page" className="text-white">{c.label}</span>
                 )}
               </span>
             ))}
           </nav>
         )}
-
-        {badge && (
-          <div className="mb-5">
-            <span
-              className="inline-flex items-center text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full"
-              style={{
-                background: "rgba(60,80,224,0.12)",
-                color: "#a5b4fc",
-                border: "1px solid rgba(60,80,224,0.22)",
-              }}
-            >
-              {badge}
-            </span>
-          </div>
-        )}
-
-        <h1
-          className="font-black leading-[1.1] mb-4"
-          style={{
-            fontSize: "clamp(2.2rem,5vw,3.6rem)",
-            color: "rgba(255,255,255,0.97)",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          {title}{" "}
-          {titleAccent && (
-            <span className="text-gradient-blue">{titleAccent}</span>
-          )}
+        <h1 className="font-display max-w-5xl text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.9] tracking-[-0.045em]">
+          {[title, titleAccent].filter(Boolean).join(" ")}
         </h1>
-
         {description && (
-          <p
-            className="max-w-2xl text-lg leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.45)" }}
-          >
-            {description}
-          </p>
+          <p className="mt-8 max-w-xl border-l-2 border-amber-400 pl-5 text-xl font-light leading-relaxed text-white/80">{description}</p>
         )}
       </div>
     </section>

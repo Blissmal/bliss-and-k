@@ -1,47 +1,24 @@
-import Link from "next/link";
 import { FAQS_HOME } from "@/lib/data";
-import SectionBadge from "@/components/ui/SectionBadge";
 import FaqAccordion from "@/components/ui/FaqAccordion";
-import AnimatedSection from "@/components/ui/AnimatedSection";
+import GlassLink from "@/components/fx/GlassLink";
 
 export default function FaqSection() {
   return (
-    <section id="faq" className="relative z-10 px-6 lg:px-12 py-28 section-divider">
-      <div className="max-w-3xl mx-auto">
-        <AnimatedSection>
-          <div className="text-center mb-12">
-            <SectionBadge>Common questions</SectionBadge>
-            <h2
-              className="text-4xl md:text-5xl font-black mt-4 mb-4"
-              style={{ color: "rgba(255,255,255,0.97)", letterSpacing: "-0.025em" }}
-            >
-              Frequently asked questions
-            </h2>
-            <p className="text-base" style={{ color: "rgba(255,255,255,0.4)" }}>
-              Still have questions?{" "}
-              <Link
-                href="/contact"
-                className="font-semibold transition-colors hover:text-white"
-                style={{ color: "#a5b4fc" }}
-              >
-                Talk to us directly.
-              </Link>
-            </p>
+    <section id="faq" className="relative z-10 px-6 py-28 lg:px-12">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[5fr_7fr]">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-[-0.03em] md:text-6xl">
+            Questions we hear most.
+          </h2>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-white/60">
+            Pricing, M-Pesa, timelines and ownership. Anything else, ask us directly.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <GlassLink href="/contact">Talk to us</GlassLink>
+            <GlassLink href="/faq">See all FAQs</GlassLink>
           </div>
-        </AnimatedSection>
-
+        </div>
         <FaqAccordion items={FAQS_HOME} />
-
-        {/* See all FAQs */}
-        <AnimatedSection delay={0.3} className="text-center mt-8">
-          <Link
-            href="/faq"
-            className="text-sm font-semibold transition-all hover:-translate-y-0.5 inline-flex items-center gap-1.5"
-            style={{ color: "rgba(255,255,255,0.38)" }}
-          >
-            See all FAQs →
-          </Link>
-        </AnimatedSection>
       </div>
     </section>
   );

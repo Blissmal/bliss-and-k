@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "ink": "#0a0c14",
+        "ink": "#0b0919",
+        "amber-glass": "#ff8a36",
+        "violet-deep": "#4932a0",
+        "lilac": "#ada0f5",
         "ink-2": "#0d1017",
         "ink-3": "#111420",
         "blue-accent": "#3C50E0",
@@ -20,7 +23,8 @@ const config: Config = {
         "pink-accent": "#EC4899",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-bk": "linear-gradient(135deg, #3C50E0, #7C3AED)",

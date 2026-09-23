@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = { title: "Terms of Service" };
 
@@ -54,6 +55,8 @@ const SECTIONS = [
   },
 ];
 
+const INTRO = "These Terms of Service govern all project engagements between Bliss & K Developers and its clients. By commissioning our services — whether verbally, in writing, or by paying a deposit — you agree to be bound by these terms.";
+
 export default function TermsPage() {
   return (
     <>
@@ -64,48 +67,7 @@ export default function TermsPage() {
         description="Last updated: June 2026"
         crumbs={[{ label: "Home", href: "/" }, { label: "Terms of service" }]}
       />
-
-      <section className="relative z-10 px-6 lg:px-12 pb-28">
-        <div className="max-w-3xl mx-auto">
-          <div
-            className="rounded-2xl p-8 md:p-10"
-            style={{
-              background: "rgba(255,255,255,0.025)",
-              border: "1px solid rgba(255,255,255,0.07)",
-            }}
-          >
-            {/* Intro */}
-            <div
-              className="mb-10 pl-5 py-1"
-              style={{ borderLeft: "3px solid #7C3AED" }}
-            >
-              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                These Terms of Service govern all project engagements between Bliss & K Developers and its clients. By commissioning our services — whether verbally, in writing, or by paying a deposit — you agree to be bound by these terms.
-              </p>
-            </div>
-
-            {/* Sections */}
-            <div className="space-y-8">
-              {SECTIONS.map((s, i) => (
-                <div key={i}>
-                  <h2
-                    className="text-base font-bold mb-3"
-                    style={{ color: "rgba(255,255,255,0.9)" }}
-                  >
-                    {s.title}
-                  </h2>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "rgba(255,255,255,0.45)" }}
-                  >
-                    {s.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <LegalLayout intro={INTRO} sections={SECTIONS} />
     </>
   );
 }

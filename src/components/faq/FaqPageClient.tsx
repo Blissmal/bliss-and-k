@@ -1,99 +1,54 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { FAQS_ALL } from "@/lib/data";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import GlassLink from "@/components/fx/GlassLink";
 
 export default function FaqPageClient() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [tab, setTab] = useState(0);
 
   return (
-    <section className="relative z-10 px-6 lg:px-12 pb-28">
-      <div className="max-w-3xl mx-auto">
-        {/* Category tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {FAQS_ALL.map((cat, i) => (
+    <section className="relative z-10 px-6 pb-28 lg:px-12">
+      <div className="mx-auto max-w-3xl">
+        <div role="tablist" className="liquid-glass mb-8 inline-flex flex-wrap gap-1 rounded-3xl p-1.5">
+          {FAQS_ALL.map((c, i) => (
             <button
-              key={i}
-              onClick={() => setActiveTab(i)}
-              className="relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300"
-              style={{
-                color: activeTab === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.42)",
-              }}
+              key={c.category}
+              role="tab"
+              aria-selected={tab === i}
+              onClick={() => setTab(i)}
+              className="relative rounded-full px-5 py-2 text-sm font-medium"
             >
-              {activeTab === i && (
+              {tab === i && (
                 <motion.span
-                  layoutId="tab-bg"
-                  className="absolute inset-0 rounded-xl"
-                  style={{
-                    background: "rgba(60,80,224,0.13)",
-                    border: "1px solid rgba(60,80,224,0.28)",
-                  }}
-                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  layoutId="faq-tab"
+                  className="drop-bead absolute inset-0 rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
                 />
               )}
-              <span className="relative z-10">{cat.category}</span>
+              <span className={`relative z-10 ${tab === i ? "text-white" : "text-white/60"}`}>{c.category}</span>
             </button>
           ))}
         </div>
 
-        {/* FAQ content */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-          >
-            <FaqAccordion items={FAQS_ALL[activeTab].items} />
+          <motion.div key={tab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}>
+            <FaqAccordion items={FAQS_ALL[tab].items} />
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-12 rounded-2xl p-7 flex flex-col sm:flex-row items-center justify-between gap-5"
-          style={{
-            background: "rgba(255,255,255,0.025)",
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
+        <div className="liquid-glass mt-12 flex flex-col items-start justify-between gap-5 rounded-3xl p-7 sm:flex-row sm:items-center">
           <div>
-            <p className="font-bold text-base mb-1" style={{ color: "rgba(255,255,255,0.92)" }}>
-              Didn't find your answer?
-            </p>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-              WhatsApp or call — we respond within 2–4 hours.
-            </p>
+            <p className="font-display text-xl font-bold">Didn&apos;t find your answer?</p>
+            <p className="mt-1 text-sm text-white/60">WhatsApp or call. We respond within 2 to 4 hours.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-            <a
-              href="tel:0743942007"
-              className="flex items-center justify-center gap-2 text-sm font-bold px-5 py-3 rounded-xl text-center transition-all hover:-translate-y-0.5"
-              style={{
-                background: "rgba(255,255,255,0.06)",
-                color: "rgba(255,255,255,0.7)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <Phone className="w-3.5 h-3.5" /> 0743 942 007
-            </a>
-            <Link
-              href="/contact"
-              className="text-sm font-bold px-5 py-3 rounded-xl text-white text-center transition-all hover:-translate-y-0.5 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg,#3C50E0,#7C3AED)" }}
-            >
-              Send a message
-            </Link>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <GlassLink href="tel:0743942007">0743 942 007</GlassLink>
+            <GlassLink href="/contact" variant="solid">Send a message</GlassLink>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

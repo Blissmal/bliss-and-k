@@ -1,80 +1,61 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Zap, Users, Calendar, Wrench } from "lucide-react";
+import { Calendar, Users, Wrench, Zap } from "lucide-react";
 import { STATS } from "@/lib/data";
+
+const ICONS = [Zap, Users, Calendar, Wrench];
 
 export default function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const init = async () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let revert: (() => void) | undefined;
+    (async () => {
       const { default: gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      ref.current?.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
-        const target = Number(el.dataset.count ?? 0);
-        const suffix = el.dataset.suffix ?? "";
-        const obj = { val: 0 };
-
-        gsap.to(obj, {
-          val: target,
-          duration: 2.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            once: true,
-          },
-          onUpdate() {
-            el.textContent = Math.round(obj.val) + suffix;
-          },
+      const ctx = gsap.context(() => {
+        ref.current?.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+          const suffix = el.dataset.suffix ?? "";
+          const obj = { val: 0 };
+          el.textContent = `0${suffix}`;
+          gsap.to(obj, {
+            val: Number(el.dataset.count ?? 0),
+            duration: 2,
+            ease: "power2.out",
+            scrollTrigger: { trigger: el, start: "top 90%", once: true },
+            onUpdate: () => { el.textContent = Math.round(obj.val) + suffix; },
+          });
         });
-      });
-    };
-
-    init();
+      }, ref);
+      revert = () => ctx.revert();
+    })();
+    return () => revert?.();
   }, []);
 
   return (
-    <section
-      ref={ref}
-      className="relative z-10 px-6 lg:px-12 py-14"
-      style={{
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
-        background: "rgba(255,255,255,0.018)",
-      }}
-    >
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        {STATS.map((stat, i) => (
-          <div key={i} className="flex flex-col items-center gap-3">
-            <div
-              className="w-11 h-11 rounded-2xl flex items-center justify-center"
-              style={{ background: `${stat.color}18` }}
-            >
-              {(() => {
-                const icons = [Zap, Users, Calendar, Wrench];
-                const Icon = icons[i];
-                return <Icon className="w-5 h-5" style={{ color: stat.color }} />;
-              })()}
-            </div>
-            <div>
-              <p
-                className="text-3xl font-black mb-1"
-                data-count={stat.value}
-                data-suffix={stat.suffix}
-                style={{ color: "rgba(255,255,255,0.95)", letterSpacing: "-0.02em" }}
-              >
-                0{stat.suffix}
-              </p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.34)" }}>
-                {stat.label}
-              </p>
-            </div>
-          </div>
-        ))}
+    <section className="relative z-10 px-6 py-24 lg:px-12">
+      <div ref={ref} className="mx-auto max-w-7xl">
+        <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          {STATS.map((s, i) => {
+            const Icon = ICONS[i];
+            return (
+              <div key={s.label} className="border-t border-white/25 pt-5">
+                <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber-200">
+                  <Icon size={14} aria-hidden="true" /> {s.label}
+                </p>
+                <p className="mt-6 text-[clamp(4rem,8vw,7.5rem)] font-extralight leading-none tracking-[-0.04em]" data-count={s.value} data-suffix={s.suffix}>
+                  {s.value}{s.suffix}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-14 max-w-xl border-l-2 border-amber-400 pl-5 text-xl font-light leading-relaxed text-white/80">
+          Web apps, point-of-sale and online stores for Kenyan businesses, with M-Pesa built in.
+        </p>
       </div>
     </section>
   );

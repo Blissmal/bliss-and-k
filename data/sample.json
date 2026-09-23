@@ -1,0 +1,27 @@
+{
+  "project": [
+    { "id": "p_blissmal", "name": "blissmal.store", "client": "Sample client", "url": "https://blissmal.store", "status": "live" },
+    { "id": "p_bukania", "name": "Bukania clothing platform", "client": "Sample client", "status": "live" },
+    { "id": "p_crm", "name": "Field Collections CRM", "client": "Sample client", "status": "building" },
+    { "id": "p_bls", "name": "BLS car dealership site", "client": "Sample client", "status": "maintenance" }
+  ],
+  "apiKey": [
+    { "id": "k1", "label": "Resend", "secret": "plain:sample_resend_key_A1b2", "last4": "A1b2", "projectId": "p_blissmal" },
+    { "id": "k2", "label": "M-Pesa Daraja consumer key", "secret": "plain:sample_daraja_key_9xQ4", "last4": "9xQ4", "projectId": "p_blissmal" },
+    { "id": "k3", "label": "Cloudinary", "secret": "plain:sample_cloudinary_key_7Kp2", "last4": "7Kp2", "projectId": "p_bukania" },
+    { "id": "k4", "label": "Neon connection string", "secret": "plain:sample_neon_url_Zm31", "last4": "Zm31", "projectId": "p_crm" }
+  ],
+  "todo": [
+    { "id": "t1", "title": "Send quotation for the new POS client", "dueOffsetHours": -20, "remindOffsetHours": -24 },
+    { "id": "t2", "title": "Review M-Pesa STK Push callback logs", "dueOffsetHours": 3, "remindOffsetHours": 2, "projectId": "p_blissmal" },
+    { "id": "t3", "title": "Client call: scope the inventory module", "dueOffsetHours": 26, "remindOffsetHours": 25, "projectId": "p_bukania" },
+    { "id": "t4", "title": "Deploy CRM staging build", "dueOffsetHours": 30, "projectId": "p_crm" },
+    { "id": "t5", "title": "Update Prisma schema for reminders", "dueOffsetHours": 6, "projectId": "p_crm" },
+    { "id": "t6", "title": "Design review: new admin dashboard", "dueOffsetHours": 52, "remindOffsetHours": 28 },
+    { "id": "t7", "title": "Renew hosting and SSL for the dealership site", "dueOffsetHours": 74, "remindOffsetHours": 50, "projectId": "p_bls" },
+    { "id": "t8", "title": "Write handover doc for blissmal.store", "dueOffsetHours": 120, "projectId": "p_blissmal" },
+    { "id": "t9", "title": "Draft proposal for a prospective client" },
+    { "id": "t10", "title": "Weekly backup check", "dueOffsetHours": -48, "done": true },
+    { "id": "t11", "title": "Invoice follow-up", "dueOffsetHours": -30, "done": true }
+  ]
+}

@@ -5,6 +5,7 @@ import FeaturesSection from "@/components/home/FeaturesSection";
 import HowSection from "@/components/home/HowSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FaqSection from "@/components/home/FaqSection";
+import TiltReveal from "@/components/fx/TiltReveal";
 import CTASection from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
@@ -19,10 +20,10 @@ export default function HomePage() {
     <>
       <HeroSection />
       <StatsSection />
-      <FeaturesSection />
-      <HowSection />
-      <TestimonialsSection />
-      <FaqSection />
+      <TiltReveal><FeaturesSection /></TiltReveal>
+      <TiltReveal><HowSection /></TiltReveal>
+      <TiltReveal><TestimonialsSection /></TiltReveal>
+      <TiltReveal><FaqSection /></TiltReveal>
       <CTASection />
     </>
   );

@@ -1,16 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AmbientBlobs from "@/components/AmbientBlobs";
+import SceneLoader from "@/components/fx/SceneLoader";
+import HideOnAdmin from "@/components/fx/HideOnAdmin";
+import WaterFilter from "@/components/fx/WaterFilter";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0c14",
+  themeColor: "#0b0919",
   width: "device-width",
   initialScale: 1,
 };
@@ -56,14 +53,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${outfit.variable}`}>
       <body className="font-sans antialiased">
-        <AmbientBlobs />
-        <Navbar />
+        <WaterFilter />
+        <HideOnAdmin><SceneLoader /></HideOnAdmin>
+        <HideOnAdmin><Navbar /></HideOnAdmin>
         <main className="relative z-10 min-h-screen">
           {children}
         </main>
-        <Footer />
+        <HideOnAdmin><Footer /></HideOnAdmin>
       </body>
     </html>
   );

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ExternalLink, Eye, Code2, ShieldCheck, MapPin } from "lucide-react";
+import { ExternalLink, Eye, Code2, ShieldCheck, MapPin } from "lucide-react";
 import { TEAM } from "@/lib/data";
 import PageHeader from "@/components/PageHeader";
-import AnimatedSection from "@/components/ui/AnimatedSection";
+import CTASection from "@/components/home/CTASection";
 import { BuildingDigitalSolutionsSVG } from "@/components/ui/Logo";
 
 export const metadata: Metadata = {
@@ -13,228 +12,80 @@ export const metadata: Metadata = {
 };
 
 const VALUES = [
-  {
-    icon: Eye,
-    title: "Transparency first",
-    desc: "No hidden fees. No moving goalposts. You get a full scope, a fixed quote, and honest progress updates at every stage.",
-    color: "#3C50E0",
-  },
-  {
-    icon: Code2,
-    title: "Clean code, always",
-    desc: "We write maintainable, well-documented code you (or any future developer) can build on without starting from scratch.",
-    color: "#7C3AED",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Full ownership",
-    desc: "You own everything we build — all source code, design files, and databases. No subscriptions, no lock-ins, no royalties.",
-    color: "#22AD5C",
-  },
-  {
-    icon: MapPin,
-    title: "Built for Kenya",
-    desc: "We understand the local market — M-Pesa integrations, local hosting, Swahili-friendly UX, and Kenya-specific compliance.",
-    color: "#F97316",
-  },
+  { icon: Eye, title: "Transparency first", desc: "No hidden fees. No moving goalposts. You get a full scope, a fixed quote, and honest progress updates at every stage." },
+  { icon: Code2, title: "Clean code, always", desc: "We write maintainable, well-documented code you (or any future developer) can build on without starting from scratch." },
+  { icon: ShieldCheck, title: "Full ownership", desc: "You own everything we build — all source code, design files, and databases. No subscriptions, no lock-ins, no royalties." },
+  { icon: MapPin, title: "Built for Kenya", desc: "We understand the local market — M-Pesa integrations, local hosting, Swahili-friendly UX, and Kenya-specific compliance." },
 ];
+const CARD = ["mist text-[#1a0f2e]", "biz-card"];
 
 export default function AboutPage() {
   return (
     <>
       <PageHeader
-        badge="Who we are"
         title="Building digital solutions"
         titleAccent="for a better tomorrow."
         description="Bliss & K Developers is a two-person software agency in Kenya — one builds, one sells, and together we ship."
         crumbs={[{ label: "Home", href: "/" }, { label: "About us" }]}
       />
-
-      <section className="relative z-10 px-6 lg:px-12 pb-28">
-        <div className="max-w-5xl mx-auto">
-
-          {/* Story */}
-          <AnimatedSection className="mb-16">
-            <div
-              className="rounded-2xl p-8 md:p-10 grid md:grid-cols-3 gap-8 items-center"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(255,255,255,0.07)",
-              }}
-            >
-              <div className="md:col-span-2">
-                <span
-                  className="text-[11px] font-bold uppercase tracking-widest mb-5 block"
-                  style={{ color: "#a5b4fc" }}
-                >
-                  Our story
-                </span>
-                <p
-                  className="text-lg leading-relaxed mb-5"
-                  style={{ color: "rgba(255,255,255,0.72)" }}
-                >
-                  Bliss & K Developers was founded on a simple belief:{" "}
-                  <span style={{ color: "rgba(255,255,255,0.95)" }}>
-                    businesses of all sizes deserve high-quality digital tools — without enterprise price tags.
-                  </span>
-                </p>
-                <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  We combine deep technical expertise with a genuine understanding of the Kenyan market. Every project is scoped clearly, delivered on time, and handed over with full documentation. No surprises.
-                </p>
-                <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  Whether you need a two-page business website or a full multi-tenant SaaS with M-Pesa payments and an admin dashboard — we've built it, and we can build it for you.
-                </p>
-              </div>
-              <div
-                className="flex items-center justify-center p-6 rounded-xl h-full border"
-                style={{
-                  background: "rgba(10,12,20,0.4)",
-                  borderColor: "rgba(255,255,255,0.04)",
-                }}
-              >
-                <BuildingDigitalSolutionsSVG className="w-full max-w-[220px]" />
+      <section className="relative z-10 px-6 pb-24 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-center gap-10 lg:grid-cols-[2fr_1fr]">
+            <div>
+              <p className="font-display text-[clamp(1.75rem,3.6vw,3.25rem)] font-light leading-[1.15] tracking-tight">
+                Bliss &amp; K Developers was founded on a simple belief: businesses of all sizes deserve high-quality digital tools, without enterprise price tags.
+              </p>
+              <div className="mt-8 grid gap-6 text-lg font-light leading-relaxed text-white/70 md:grid-cols-2">
+                <p>We combine deep technical expertise with a genuine understanding of the Kenyan market. Every project is scoped clearly, delivered on time, and handed over with full documentation. No surprises.</p>
+                <p>Whether you need a two-page business website or a full multi-tenant SaaS with M-Pesa payments and an admin dashboard, we&apos;ve built it, and we can build it for you.</p>
               </div>
             </div>
-          </AnimatedSection>
-
-          {/* Team */}
-          <AnimatedSection className="mb-16">
-            <h2
-              className="text-2xl font-black mb-8"
-              style={{ color: "rgba(255,255,255,0.95)", letterSpacing: "-0.02em" }}
-            >
-              The team
-            </h2>
-            <div className="grid md:grid-cols-2 gap-5">
-              {TEAM.map((m, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl p-7"
-                  style={{
-                    background: "rgba(255,255,255,0.025)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                  }}
-                >
-                  {/* Avatar + name */}
-                  <div className="flex items-center gap-4 mb-5">
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-black shrink-0"
-                      style={{ background: m.bg, color: m.color }}
-                    >
-                      {m.initials}
-                    </div>
-                    <div>
-                      <p className="font-bold text-base" style={{ color: "rgba(255,255,255,0.95)" }}>
-                        {m.name}
-                      </p>
-                      <p className="text-xs font-semibold mt-0.5" style={{ color: m.color }}>
-                        {m.role}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.45)" }}>
-                    {m.desc}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {m.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[10px] font-semibold px-2.5 py-1 rounded-full"
-                        style={{
-                          background: `${m.color}12`,
-                          color: m.color,
-                          border: `1px solid ${m.color}22`,
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href={m.href}
-                    target={m.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors"
-                    style={{ color: m.color }}
-                  >
-                    {m.handle}
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              ))}
+            <div className="liquid-glass flex items-center justify-center rounded-[2rem] p-8">
+              <BuildingDigitalSolutionsSVG className="w-full max-w-[240px]" />
             </div>
-          </AnimatedSection>
+          </div>
 
-          {/* Values */}
-          <AnimatedSection className="mb-16">
-            <h2
-              className="text-2xl font-black mb-8"
-              style={{ color: "rgba(255,255,255,0.95)", letterSpacing: "-0.02em" }}
-            >
-              Our values
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {VALUES.map((v, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 p-6 rounded-2xl"
-                  style={{
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: `${v.color}15` }}
-                  >
-                    <v.icon className="w-5 h-5" style={{ color: v.color }} />
-                  </div>
+          <div className="mt-20 grid gap-4 md:grid-cols-2">
+            {TEAM.map((m, i) => {
+              const light = i === 0;
+              return (
+                <article key={m.name} className={`flex flex-col justify-between gap-10 rounded-[2.5rem] p-9 md:p-12 ${CARD[i % 2]}`}>
+                  <span className="text-[clamp(6rem,12vw,10rem)] font-extralight leading-none tracking-[-0.06em] opacity-70">{m.initials}</span>
                   <div>
-                    <p className="font-bold text-sm mb-2" style={{ color: "rgba(255,255,255,0.92)" }}>
-                      {v.title}
-                    </p>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.42)" }}>
-                      {v.desc}
-                    </p>
+                    <h2 className="font-display text-3xl font-bold tracking-tight">{m.name}</h2>
+                    <p className={`mt-1 font-semibold ${light ? "text-[#4932a0]" : "text-amber-200"}`}>{m.role}</p>
+                    <p className={`mt-4 leading-relaxed ${light ? "text-[#1a0f2e]/75" : "text-white/75"}`}>{m.desc}</p>
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {m.tags.map((t) => (
+                        <li key={t} className={`rounded-full border px-3 py-1 text-xs ${light ? "border-black/20" : "border-white/25"}`}>{t}</li>
+                      ))}
+                    </ul>
+                    <a
+                      href={m.href}
+                      target={m.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className={`mt-5 inline-flex items-center gap-1.5 font-semibold underline underline-offset-4 ${light ? "text-[#4932a0]" : "text-amber-200"}`}
+                    >
+                      {m.handle} <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    </a>
                   </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
+                </article>
+              );
+            })}
+          </div>
 
-          {/* CTA */}
-          <AnimatedSection>
-            <div
-              className="rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
-              style={{
-                background: "rgba(60,80,224,0.06)",
-                border: "1px solid rgba(60,80,224,0.18)",
-              }}
-            >
-              <div>
-                <p className="font-bold text-lg mb-1" style={{ color: "rgba(255,255,255,0.92)" }}>
-                  Want to work with us?
-                </p>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.42)" }}>
-                  Let's have a quick discovery call — no commitment required.
-                </p>
+          <div className="mt-20 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {VALUES.map((v) => (
+              <div key={v.title} className="border-t border-white/25 pt-5">
+                <v.icon className="h-6 w-6 text-amber-200" aria-hidden="true" />
+                <h3 className="font-display mt-5 text-2xl font-bold tracking-tight">{v.title}</h3>
+                <p className="mt-3 font-light leading-relaxed text-white/70">{v.desc}</p>
               </div>
-              <Link
-                href="/contact"
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
-                style={{ background: "linear-gradient(135deg,#3C50E0,#7C3AED)" }}
-              >
-                Get in touch <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </AnimatedSection>
-
+            ))}
+          </div>
         </div>
       </section>
+      <CTASection />
     </>
   );
 }

@@ -1,16 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface FaqItem { q: string; a: string }
 
-interface FaqAccordionProps {
-  items: FaqItem[];
-  accentColor?: string;
-}
-
-export default function FaqAccordion({ items, accentColor = "#3C50E0" }: FaqAccordionProps) {
+export default function FaqAccordion({ items, accentColor = "#ff8a36" }: { items: FaqItem[]; accentColor?: string }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -18,62 +13,42 @@ export default function FaqAccordion({ items, accentColor = "#3C50E0" }: FaqAcco
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.06 }}
+          <div
+            key={item.q}
+            className="liquid-glass overflow-hidden rounded-2xl transition-colors duration-300"
+            style={isOpen ? { borderColor: `${accentColor}80` } : undefined}
           >
-            <div
-              className="rounded-2xl overflow-hidden transition-all duration-300"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: `1px solid ${isOpen ? `${accentColor}55` : "rgba(255,255,255,0.07)"}`,
-              }}
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              onClick={() => setOpen(isOpen ? null : i)}
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
             >
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
+              <span className="font-semibold leading-snug">{item.q}</span>
+              <motion.span
+                animate={{ rotate: isOpen ? 45 : 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="shrink-0 text-xl font-light"
+                style={{ color: isOpen ? accentColor : "rgba(255,255,255,0.45)" }}
+                aria-hidden="true"
               >
-                <span
-                  className="text-sm font-semibold leading-snug"
-                  style={{ color: "rgba(255,255,255,0.88)" }}
+                +
+              </motion.span>
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
                 >
-                  {item.q}
-                </span>
-                <motion.span
-                  animate={{ rotate: isOpen ? 45 : 0 }}
-                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-xl shrink-0 font-light"
-                  style={{ color: isOpen ? "#a5b4fc" : "rgba(255,255,255,0.35)" }}
-                >
-                  +
-                </motion.span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    key="answer"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <div
-                      className="px-6 pb-5 pt-1 text-sm leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.45)" }}
-                    >
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
+                  <p className="px-6 pb-5 leading-relaxed text-white/65">{item.a}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         );
       })}
     </div>

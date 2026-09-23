@@ -1,69 +1,23 @@
-"use client";
-
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Rocket, Phone } from "lucide-react";
+import GlassLink from "@/components/fx/GlassLink";
 
 export default function CTASection() {
   return (
-    <section className="relative z-10 px-6 lg:px-12 py-28 section-divider">
-      <div className="max-w-3xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {/* Icon */}
-          <div
-            className="inline-flex w-16 h-16 rounded-2xl items-center justify-center mb-8"
-            style={{
-              background: "linear-gradient(135deg,rgba(60,80,224,0.2),rgba(124,58,237,0.2))",
-              border: "1px solid rgba(124,58,237,0.3)",
-            }}
-          >
-            <Rocket className="w-8 h-8" style={{ color: "#a5b4fc" }} />
-          </div>
-
-          <h2
-            className="text-4xl md:text-5xl font-black mb-5"
-            style={{ color: "rgba(255,255,255,0.97)", letterSpacing: "-0.025em" }}
-          >
-            Ready to build?
+    <section className="relative z-10 px-6 pb-28 pt-10 lg:px-12">
+      <div className="biz-card relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] p-10 md:p-20">
+        <span aria-hidden="true" className="orb-css !z-0 -bottom-28 -right-20 h-80 w-80 blur-[4px]" />
+        <div className="relative z-10">
+          <h2 className="font-display max-w-4xl text-[clamp(3rem,8vw,7.5rem)] font-bold leading-[0.9] tracking-[-0.045em]">
+            Tell us what you need to build.
           </h2>
-          <p
-            className="text-lg leading-relaxed mb-10 max-w-xl mx-auto"
-            style={{ color: "rgba(255,255,255,0.42)" }}
-          >
-            Tell us what you need. We'll reply within a few hours with a clear scope, honest timeline, and transparent quote — no pressure, no corporate jargon.
+          <p className="mt-8 max-w-xl text-xl font-light leading-relaxed text-white/75">
+            We reply within a few hours with a clear scope, an honest timeline and a transparent quote.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-xl text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:opacity-92"
-              style={{ background: "linear-gradient(135deg,#3C50E0,#7C3AED)" }}
-            >
-              Start your project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href="tel:0743942007"
-              className="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-xl text-sm font-bold transition-all hover:-translate-y-0.5"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.65)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <Phone className="w-4 h-4" /> Call 0743 942 007
-            </a>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <GlassLink href="/contact" variant="solid">Start your project</GlassLink>
+            <GlassLink href="tel:0743942007">Call 0743 942 007</GlassLink>
           </div>
-
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.28)" }}>
-            Mon – Sat · 8am – 8pm EAT · Typically respond in 2–4 hours
-          </p>
-        </motion.div>
+          <p className="mt-6 text-sm text-white/55">Mon to Sat, 8am to 8pm EAT. We usually respond in 2 to 4 hours.</p>
+        </div>
       </div>
     </section>
   );
