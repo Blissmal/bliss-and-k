@@ -9,9 +9,9 @@ export default async function ProjectsPage() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
-      <h1 className="font-display text-3xl font-bold">Projects &amp; API keys</h1>
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold leading-none tracking-[-0.04em]">Projects &amp; API keys</h1>
 
-      <form action={addProject} className="liquid-glass grid gap-3 rounded-3xl p-5 sm:grid-cols-2">
+      <form action={addProject} className="liquid-glass grid gap-3 rounded-[2rem] p-5 sm:grid-cols-2">
         <input name="name" required placeholder="Project name" className="field" />
         <input name="client" placeholder="Client" className="field" />
         <input name="url" placeholder="Live URL" className="field" />
@@ -26,7 +26,7 @@ export default async function ProjectsPage() {
       {projects.length === 0 && <p className="text-white/55">No projects yet. Add your first one above.</p>}
 
       {projects.map((p) => (
-        <section key={p.id} className="liquid-glass space-y-3 rounded-3xl p-5">
+        <section key={p.id} className="liquid-glass space-y-3 rounded-[2rem] p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 className="font-display text-xl font-bold">{p.name}</h2>

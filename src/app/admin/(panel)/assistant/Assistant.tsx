@@ -24,10 +24,10 @@ export default function Assistant({ projects }: { projects: { id: string; name: 
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <h1 className="font-display text-3xl font-bold">Assistant</h1>
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] font-bold leading-none tracking-[-0.04em]">Assistant</h1>
       {error && <p role="alert" className="rounded-xl bg-rose-500/15 px-4 py-2 text-sm text-rose-200">{error}</p>}
 
-      <section className="liquid-glass space-y-3 rounded-3xl p-5">
+      <section className="liquid-glass space-y-3 rounded-[2rem] p-5">
         <h2 className="font-display text-lg font-bold">Weekly briefing</h2>
         <p className="text-sm text-white/55">Summarises overdue and upcoming tasks and suggests priorities.</p>
         <button disabled={pending} onClick={() => run(async () => { const r = await summariseWeek(); r.ok ? setSummary(r.data) : setError(r.error); })} className="btn-amber flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-[#1a0f2e] disabled:opacity-60">
@@ -36,7 +36,7 @@ export default function Assistant({ projects }: { projects: { id: string; name: 
         {summary && <p className="whitespace-pre-wrap rounded-2xl bg-white/5 p-4 text-sm leading-relaxed">{summary}</p>}
       </section>
 
-      <section className="liquid-glass space-y-3 rounded-3xl p-5">
+      <section className="liquid-glass space-y-3 rounded-[2rem] p-5">
         <h2 className="font-display text-lg font-bold">Plan a project</h2>
         <textarea value={brief} onChange={(e) => setBrief(e.target.value)} rows={4} placeholder="Describe the project: scope, features, integrations, deadline." className="field" />
         <div className="flex flex-wrap gap-3">

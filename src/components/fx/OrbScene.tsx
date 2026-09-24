@@ -16,6 +16,9 @@ const GAP = 3.4;
  * swirl the colored backdrop like real water, instead of faking transmission
  * with env maps. `distortion` + `temporalDistortion` add the liquid wobble,
  * `chromaticAberration` gives the glass rainbow fringing.
+ *
+ * Mobile: below 768px only the first 3 orbs render, at lower buffer
+ * resolution and sample count (each orb re-renders the scene every frame).
  */
 const ORBS = [
   { r: 1.7, x: 2.4,  shell: "#8b6dff", swirl: "#ff8a36", ring: "#ffb070", ringTilt: 0.5,  frost: false },
@@ -68,9 +71,9 @@ function Backdrop() {
   );
 }
 
-function Rig({ progress, reduce }: { progress: React.MutableRefObject<number>; reduce: boolean }) {
+function Rig({ progress, reduce, count }: { progress: React.MutableRefObject<number>; reduce: boolean; count: number }) {
   useFrame((state, dt) => {
-    const targetY = -progress.current * (ORBS.length - 1) * GAP;
+    const targetY = -progress.current * (count - 1) * GAP;
     const k = 1 - Math.pow(0.001, dt);
     state.camera.position.y += (targetY - state.camera.position.y) * k;
     if (!reduce) {
@@ -81,7 +84,7 @@ function Rig({ progress, reduce }: { progress: React.MutableRefObject<number>; r
   return null;
 }
 
-function Orb({ i, reduce }: { i: number; reduce: boolean }) {
+function Orb({ i, reduce, lite }: { i: number; reduce: boolean; lite: boolean }) {
   const o = ORBS[i];
   const g = useRef<Group>(null);
   const ring = useRef<Group>(null);
@@ -110,8 +113,8 @@ function Orb({ i, reduce }: { i: number; reduce: boolean }) {
             attenuationColor={o.shell}
             attenuationDistance={2.2}
             envMapIntensity={1.2}
-            resolution={512}
-            samples={6}
+            resolution={lite ? 256 : 512}
+            samples={lite ? 3 : 6}
           />
         </mesh>
 
@@ -150,6 +153,8 @@ function Orb({ i, reduce }: { i: number; reduce: boolean }) {
 export default function OrbScene() {
   const progress = useRef(0);
   const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lite = typeof window !== "undefined" && window.innerWidth < 768;
+  const count = lite ? 3 : ORBS.length;
 
   useEffect(() => {
     const onScroll = () => {
@@ -166,7 +171,7 @@ export default function OrbScene() {
     <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
       {/* alpha:true again — the gradient Backdrop provides the content the
           droplets refract, so no opaque canvas background is needed. */}
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 32 }} gl={{ alpha: true, antialias: true }}>
+      <Canvas dpr={lite ? [1, 1.25] : [1, 1.5]} camera={{ position: [0, 0, 9], fov: 32 }} gl={{ alpha: true, antialias: true }}>
         <Environment resolution={256}>
           <Lightformer form="rect" intensity={6} color="#ffffff" position={[0, 6, 4]} scale={[5, 3, 1]} />
           <Lightformer form="rect" intensity={4} color="#8b6dff" position={[-6, 0, 2]} scale={[6, 4, 1]} />
@@ -175,9 +180,9 @@ export default function OrbScene() {
           <Lightformer form="ring" intensity={3} color="#e9d5ff" position={[0, 4, -4]} scale={4} />
         </Environment>
         <Backdrop />
-        <Rig progress={progress} reduce={reduce} />
-        {ORBS.map((_, i) => (
-          <Orb key={i} i={i} reduce={reduce} />
+        <Rig progress={progress} reduce={reduce} count={count} />
+        {ORBS.slice(0, count).map((_, i) => (
+          <Orb key={i} i={i} reduce={reduce} lite={lite} />
         ))}
       </Canvas>
     </div>

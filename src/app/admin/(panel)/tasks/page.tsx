@@ -38,7 +38,7 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="mx-auto grid max-w-6xl gap-6 xl:grid-cols-[1fr_380px]">
-      <section className="liquid-glass rounded-3xl p-5">
+      <section className="liquid-glass rounded-[2rem] p-5">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="font-display text-2xl font-bold">
             {new Date(Date.UTC(y, mo - 1, 1)).toLocaleString("en-KE", { month: "long", year: "numeric", timeZone: "UTC" })}
@@ -54,10 +54,10 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
           {Array.from({ length: days }, (_, i) => {
             const d = i + 1, ts = byDay.get(d) ?? [];
             return (
-              <div key={d} className={`min-h-20 rounded-xl p-1.5 ${isToday(d) ? "bg-amber-400/15 ring-1 ring-amber-300/50" : "bg-white/5"}`}>
-                <div className="mb-1 font-medium text-white/70">{d}</div>
-                {ts.slice(0, 2).map((t) => <div key={t.id} className={`truncate rounded-md px-1 ${t.done ? "text-white/35 line-through" : "bg-violet-400/25"}`}>{t.title}</div>)}
-                {ts.length > 2 && <div className="px-1 text-white/45">+{ts.length - 2} more</div>}
+              <div key={d} className={`min-h-14 rounded-xl sm:min-h-20 p-1.5 ${isToday(d) ? "bg-amber-400/15 ring-1 ring-amber-300/50" : "bg-white/5"}`}>
+                <div className="mb-1 font-medium text-white/70">{d}{ts.length > 0 && <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-amber-300 sm:hidden" />}</div>
+                {ts.slice(0, 2).map((t) => <div key={t.id} className={`hidden truncate rounded-md px-1 sm:block ${t.done ? "text-white/35 line-through" : "bg-violet-400/25"}`}>{t.title}</div>)}
+                {ts.length > 2 && <div className="hidden px-1 text-white/45 sm:block">+{ts.length - 2} more</div>}
               </div>
             );
           })}
@@ -65,7 +65,7 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
       </section>
 
       <div className="space-y-6">
-        <form action={addTodo} className="liquid-glass space-y-3 rounded-3xl p-5">
+        <form action={addTodo} className="liquid-glass space-y-3 rounded-[2rem] p-5">
           <h2 className="font-display text-lg font-bold">Add a task</h2>
           <input name="title" required placeholder="What needs doing?" className="field" />
           <label className="block text-xs text-white/55">Due (Kenya time)
@@ -84,7 +84,7 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
           <button className="btn-amber rounded-full px-6 py-2.5 text-sm font-semibold text-[#1a0f2e]">Add task</button>
         </form>
 
-        <section className="liquid-glass space-y-1.5 rounded-3xl p-5">
+        <section className="liquid-glass space-y-1.5 rounded-[2rem] p-5">
           <h2 className="font-display mb-2 text-lg font-bold">Open tasks</h2>
           {open.length === 0 && <p className="text-sm text-white/55">Nothing open. Add a task above.</p>}
           {[...open.map((t) => ({ t, isDone: false })), ...done.map((t) => ({ t: { ...t, project: null }, isDone: true }))].map(({ t, isDone }) => (

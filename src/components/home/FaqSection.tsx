@@ -7,10 +7,10 @@ export default function FaqSection() {
     <section id="faq" className="relative z-10 px-6 py-28 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[5fr_7fr]">
         <div className="lg:sticky lg:top-32 lg:self-start">
-          <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-[-0.03em] md:text-6xl">
+          <h2 className="font-display text-[clamp(2.75rem,6.5vw,6rem)] font-bold leading-[0.95] tracking-[-0.04em]">
             Questions we hear most.
           </h2>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-white/60">
+          <p className="mt-5 max-w-md text-lg font-light leading-relaxed text-white/70">
             Pricing, M-Pesa, timelines and ownership. Anything else, ask us directly.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

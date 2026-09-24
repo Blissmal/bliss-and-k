@@ -5,9 +5,9 @@ export default function LegalLayout({ intro, sections }: { intro: string; sectio
     <section className="relative z-10 px-6 pb-28 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[18rem_1fr]">
         <nav aria-label="On this page" className="lg:sticky lg:top-28 lg:self-start">
-          <ul className="space-y-2.5 text-sm">
+          <ul className="flex gap-5 overflow-x-auto pb-2 text-sm lg:block lg:space-y-2.5 lg:overflow-visible lg:pb-0">
             {sections.map((s) => (
-              <li key={s.title}><a href={`#${slug(s.title)}`} className="text-white/65 hover:text-white">{s.title}</a></li>
+              <li key={s.title}><a href={`#${slug(s.title)}`} className="whitespace-nowrap text-white/65 hover:text-white">{s.title}</a></li>
             ))}
           </ul>
         </nav>

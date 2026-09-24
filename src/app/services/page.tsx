@@ -34,8 +34,8 @@ export default function ServicesPage() {
             return (
               <article
                 key={s.title}
-                style={{ top: `calc(6.5rem + ${i * 1.25}rem)` }}
-                className={`sticky mb-6 grid min-h-[22rem] gap-8 rounded-[2.5rem] p-8 md:grid-cols-2 md:p-12 ${t.cls} ${t.light ? "text-[#1a0f2e]" : ""}`}
+                style={{ "--top": `calc(6.5rem + ${i * 1.25}rem)` } as React.CSSProperties}
+                className={`mb-6 grid md:sticky md:top-[var(--top)] min-h-[22rem] gap-8 rounded-[2.5rem] p-8 md:grid-cols-2 md:p-12 ${t.cls} ${t.light ? "text-[#1a0f2e]" : ""}`}
               >
                 <div className="flex flex-col justify-between gap-8">
                   <Icon className={`h-12 w-12 ${t.light ? "text-[#4932a0]" : "text-amber-200"}`} aria-hidden="true" />

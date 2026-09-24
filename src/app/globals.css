@@ -186,3 +186,12 @@ body {
     background: radial-gradient(circle at 30% 25%, #ffd0a8, #ff8a36 30%, #6a4cff 62%, #352372 100%);
   }
 }
+
+@layer utilities {
+  .drop-bead {
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.32), rgba(173,160,245,.38) 55%, rgba(255,138,54,.3));
+  }
+  .field { background: rgba(255,255,255,.08); border-color: rgba(173,160,245,.3); }
+}
+
+html, body { overflow-x: clip; }

@@ -35,7 +35,7 @@ export default function TiltCard() {
           <LogoIcon className="h-12 w-12 sm:h-14 sm:w-14" />
           <span className="font-display text-4xl font-bold tracking-tight sm:text-5xl">Bliss &amp; K</span>
         </div>
-        <div className="flex items-end justify-between text-xs text-white/75 sm:text-sm">
+        <div className="flex flex-col gap-1 text-xs text-white/75 sm:flex-row sm:items-end sm:justify-between sm:text-sm">
           <span>Innovative Technology, Reliable Solutions</span>
           <span className="font-semibold text-white">0743 942 007</span>
         </div>

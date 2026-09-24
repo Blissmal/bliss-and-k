@@ -4,7 +4,7 @@
 import seed from "../../data/sample.json";
 
 type Row = Record<string, any>;
-type Tables = Record<"project" | "apiKey" | "todo", Row[]>;
+type Tables = Record<"project" | "apiKey" | "todo" | "quote", Row[]>;
 type Args = { where?: Row; orderBy?: any; take?: number; include?: Row; select?: Row; data?: Row };
 
 const HOUR = 3600e3;
@@ -16,6 +16,7 @@ const REL: Record<string, Record<string, [string, "one" | "many", string]>> = {
 const DEFAULTS: Record<string, Row> = {
   project: { client: null, url: null, status: "live" },
   apiKey: {},
+  quote: { vat: true, validDays: 14, status: "draft" },
   todo: { done: false, dueAt: null, remindAt: null, remindedAt: null, projectId: null },
 };
 
@@ -24,6 +25,10 @@ function load(): Tables {
   const t = structuredClone(seed) as any;
   t.project.forEach((r: Row, i: number) => Object.assign(r, { client: null, url: null, ...r, createdAt: new Date(now - (i + 5) * 24 * HOUR) }));
   t.apiKey.forEach((r: Row) => (r.createdAt = new Date(now - 3 * 24 * HOUR)));
+  t.quote.forEach((r: Row, i: number) => {
+    r.createdAt = new Date(now + (r.createdOffsetHours ?? -i * 24) * HOUR);
+    delete r.createdOffsetHours;
+  });
   t.todo.forEach((r: Row, i: number) => {
     const at = (k: string) => (r[k] == null ? null : new Date(now + r[k] * HOUR));
     Object.assign(r, { dueAt: at("dueOffsetHours"), remindAt: at("remindOffsetHours"), remindedAt: null, createdAt: new Date(now - (i + 1) * HOUR) });
@@ -59,7 +64,7 @@ function sort(rows: Row[], orderBy: any) {
   return [...rows].sort((r1, r2) => {
     for (const [k, d] of specs) {
       const dir = typeof d === "string" ? d : (d as { sort: string }).sort;
-      const nulls = typeof d === "string" ? "last" : (d as { nulls?: "first" | "last" }).nulls ?? "last";
+      const nulls = typeof d === "string" ? "last" : (d as { nulls: string }).nulls ?? "last";
       const a = r1[k], b = r2[k];
       if (a == null || b == null) {
         if (a == b) continue;
@@ -127,4 +132,4 @@ function model(name: keyof Tables) {
   };
 }
 
-export const sampleDb = { project: model("project"), apiKey: model("apiKey"), todo: model("todo") };
+export const sampleDb = { project: model("project"), apiKey: model("apiKey"), todo: model("todo"), quote: model("quote") };

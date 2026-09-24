@@ -11,7 +11,7 @@ export default function FaqPageClient() {
 
   return (
     <section className="relative z-10 px-6 pb-28 lg:px-12">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-4xl">
         <div role="tablist" className="liquid-glass mb-8 inline-flex flex-wrap gap-1 rounded-3xl p-1.5">
           {FAQS_ALL.map((c, i) => (
             <button
@@ -39,7 +39,7 @@ export default function FaqPageClient() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="liquid-glass mt-12 flex flex-col items-start justify-between gap-5 rounded-3xl p-7 sm:flex-row sm:items-center">
+        <div className="biz-card mt-12 flex flex-col items-start justify-between gap-5 rounded-[2rem] p-8 sm:flex-row sm:items-center">
           <div>
             <p className="font-display text-xl font-bold">Didn&apos;t find your answer?</p>
             <p className="mt-1 text-sm text-white/60">WhatsApp or call. We respond within 2 to 4 hours.</p>

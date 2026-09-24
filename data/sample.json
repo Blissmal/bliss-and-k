@@ -1,27 +1,445 @@
 {
   "project": [
-    { "id": "p_blissmal", "name": "blissmal.store", "client": "Sample client", "url": "https://blissmal.store", "status": "live" },
-    { "id": "p_bukania", "name": "Bukania clothing platform", "client": "Sample client", "status": "live" },
-    { "id": "p_crm", "name": "Field Collections CRM", "client": "Sample client", "status": "building" },
-    { "id": "p_bls", "name": "BLS car dealership site", "client": "Sample client", "status": "maintenance" }
+    {
+      "id": "p_blissmal",
+      "name": "blissmal.store",
+      "client": "Sample client",
+      "url": "https://blissmal.store",
+      "status": "live"
+    },
+    {
+      "id": "p_bukania",
+      "name": "Bukania clothing platform",
+      "client": "Sample client",
+      "status": "live"
+    },
+    {
+      "id": "p_crm",
+      "name": "Field Collections CRM",
+      "client": "Sample client",
+      "status": "building"
+    },
+    {
+      "id": "p_bls",
+      "name": "BLS car dealership site",
+      "client": "Sample client",
+      "status": "maintenance"
+    },
+    {
+      "id": "p_cafe",
+      "name": "Sample: Café ordering system",
+      "client": "Sample Café",
+      "url": "https://example.com",
+      "status": "live"
+    },
+    {
+      "id": "p_salon",
+      "name": "Sample: Salon booking site",
+      "client": "Sample Salon",
+      "status": "building"
+    },
+    {
+      "id": "p_school",
+      "name": "Sample: School fees portal",
+      "client": "Sample Academy",
+      "status": "building"
+    },
+    {
+      "id": "p_logi",
+      "name": "Sample: Logistics dashboard",
+      "client": "Sample Logistics",
+      "url": "https://example.com",
+      "status": "live"
+    }
   ],
   "apiKey": [
-    { "id": "k1", "label": "Resend", "secret": "plain:sample_resend_key_A1b2", "last4": "A1b2", "projectId": "p_blissmal" },
-    { "id": "k2", "label": "M-Pesa Daraja consumer key", "secret": "plain:sample_daraja_key_9xQ4", "last4": "9xQ4", "projectId": "p_blissmal" },
-    { "id": "k3", "label": "Cloudinary", "secret": "plain:sample_cloudinary_key_7Kp2", "last4": "7Kp2", "projectId": "p_bukania" },
-    { "id": "k4", "label": "Neon connection string", "secret": "plain:sample_neon_url_Zm31", "last4": "Zm31", "projectId": "p_crm" }
+    {
+      "id": "k1",
+      "label": "Resend",
+      "secret": "plain:sample_resend_key_A1b2",
+      "last4": "A1b2",
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "k2",
+      "label": "M-Pesa Daraja consumer key",
+      "secret": "plain:sample_daraja_key_9xQ4",
+      "last4": "9xQ4",
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "k3",
+      "label": "M-Pesa Daraja passkey",
+      "secret": "plain:sample_daraja_pass_Lm82",
+      "last4": "Lm82",
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "k4",
+      "label": "Cloudinary",
+      "secret": "plain:sample_cloudinary_key_7Kp2",
+      "last4": "7Kp2",
+      "projectId": "p_bukania"
+    },
+    {
+      "id": "k5",
+      "label": "Neon connection string",
+      "secret": "plain:sample_neon_url_Zm31",
+      "last4": "Zm31",
+      "projectId": "p_crm"
+    },
+    {
+      "id": "k6",
+      "label": "Vercel token",
+      "secret": "plain:sample_vercel_token_Qw90",
+      "last4": "Qw90",
+      "projectId": "p_crm"
+    },
+    {
+      "id": "k7",
+      "label": "Google Maps",
+      "secret": "plain:sample_maps_key_Tr55",
+      "last4": "Tr55",
+      "projectId": "p_logi"
+    },
+    {
+      "id": "k8",
+      "label": "SMS gateway",
+      "secret": "plain:sample_sms_key_Ba07",
+      "last4": "Ba07",
+      "projectId": "p_school"
+    },
+    {
+      "id": "k9",
+      "label": "Resend",
+      "secret": "plain:sample_resend_key_Hh63",
+      "last4": "Hh63",
+      "projectId": "p_cafe"
+    },
+    {
+      "id": "k10",
+      "label": "Sentry DSN",
+      "secret": "plain:sample_sentry_dsn_Vc18",
+      "last4": "Vc18",
+      "projectId": "p_bls"
+    }
   ],
   "todo": [
-    { "id": "t1", "title": "Send quotation for the new POS client", "dueOffsetHours": -20, "remindOffsetHours": -24 },
-    { "id": "t2", "title": "Review M-Pesa STK Push callback logs", "dueOffsetHours": 3, "remindOffsetHours": 2, "projectId": "p_blissmal" },
-    { "id": "t3", "title": "Client call: scope the inventory module", "dueOffsetHours": 26, "remindOffsetHours": 25, "projectId": "p_bukania" },
-    { "id": "t4", "title": "Deploy CRM staging build", "dueOffsetHours": 30, "projectId": "p_crm" },
-    { "id": "t5", "title": "Update Prisma schema for reminders", "dueOffsetHours": 6, "projectId": "p_crm" },
-    { "id": "t6", "title": "Design review: new admin dashboard", "dueOffsetHours": 52, "remindOffsetHours": 28 },
-    { "id": "t7", "title": "Renew hosting and SSL for the dealership site", "dueOffsetHours": 74, "remindOffsetHours": 50, "projectId": "p_bls" },
-    { "id": "t8", "title": "Write handover doc for blissmal.store", "dueOffsetHours": 120, "projectId": "p_blissmal" },
-    { "id": "t9", "title": "Draft proposal for a prospective client" },
-    { "id": "t10", "title": "Weekly backup check", "dueOffsetHours": -48, "done": true },
-    { "id": "t11", "title": "Invoice follow-up", "dueOffsetHours": -30, "done": true }
+    {
+      "id": "t1",
+      "title": "Kickoff call: school fees portal",
+      "dueOffsetHours": -500,
+      "done": true,
+      "projectId": "p_school"
+    },
+    {
+      "id": "t2",
+      "title": "Send invoice: café ordering system",
+      "dueOffsetHours": -470,
+      "done": true,
+      "projectId": "p_cafe"
+    },
+    {
+      "id": "t3",
+      "title": "Set up Neon database for the CRM",
+      "dueOffsetHours": -430,
+      "done": true,
+      "projectId": "p_crm"
+    },
+    {
+      "id": "t4",
+      "title": "Design review: salon booking pages",
+      "dueOffsetHours": -380,
+      "done": true,
+      "projectId": "p_salon"
+    },
+    {
+      "id": "t5",
+      "title": "Deploy staging: logistics dashboard",
+      "dueOffsetHours": -330,
+      "done": true,
+      "projectId": "p_logi"
+    },
+    {
+      "id": "t6",
+      "title": "Renew domain for the dealership site",
+      "dueOffsetHours": -290,
+      "done": true,
+      "projectId": "p_bls"
+    },
+    {
+      "id": "t7",
+      "title": "Client feedback round 2",
+      "dueOffsetHours": -240,
+      "done": true,
+      "projectId": "p_bukania"
+    },
+    {
+      "id": "t8",
+      "title": "Fix M-Pesa callback retries",
+      "dueOffsetHours": -200,
+      "done": true,
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "t9",
+      "title": "Draft handover doc: café system",
+      "dueOffsetHours": -150,
+      "done": true,
+      "projectId": "p_cafe"
+    },
+    {
+      "id": "t10",
+      "title": "Follow up on the pending quotation",
+      "dueOffsetHours": -100
+    },
+    {
+      "id": "t11",
+      "title": "Fix order status emails",
+      "dueOffsetHours": -72,
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "t12",
+      "title": "Backup restore test",
+      "dueOffsetHours": -40,
+      "projectId": "p_bls"
+    },
+    {
+      "id": "t13",
+      "title": "Send progress update: school portal",
+      "dueOffsetHours": -20,
+      "projectId": "p_school"
+    },
+    {
+      "id": "t14",
+      "title": "Review Daraja callback logs",
+      "dueOffsetHours": 2,
+      "remindOffsetHours": 1,
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "t15",
+      "title": "Prisma migration for reminders",
+      "dueOffsetHours": 5,
+      "projectId": "p_crm"
+    },
+    {
+      "id": "t16",
+      "title": "Weekly planning",
+      "dueOffsetHours": 9
+    },
+    {
+      "id": "t17",
+      "title": "Client call: scope the salon booking flow",
+      "dueOffsetHours": 22,
+      "remindOffsetHours": 21,
+      "projectId": "p_salon"
+    },
+    {
+      "id": "t18",
+      "title": "Deploy CRM staging build",
+      "dueOffsetHours": 30,
+      "projectId": "p_crm"
+    },
+    {
+      "id": "t19",
+      "title": "Design admin dashboard visuals",
+      "dueOffsetHours": 46
+    },
+    {
+      "id": "t20",
+      "title": "Write tests for STK Push",
+      "dueOffsetHours": 58,
+      "projectId": "p_blissmal"
+    },
+    {
+      "id": "t21",
+      "title": "Renew hosting and SSL",
+      "dueOffsetHours": 75,
+      "remindOffsetHours": 50,
+      "projectId": "p_bls"
+    },
+    {
+      "id": "t22",
+      "title": "Invoice: logistics phase 2",
+      "dueOffsetHours": 96,
+      "projectId": "p_logi"
+    },
+    {
+      "id": "t23",
+      "title": "Onboarding session for café staff",
+      "dueOffsetHours": 120,
+      "projectId": "p_cafe"
+    },
+    {
+      "id": "t24",
+      "title": "Quarterly dependency and security updates",
+      "dueOffsetHours": 140
+    },
+    {
+      "id": "t25",
+      "title": "Plan next month's roadmap",
+      "dueOffsetHours": 210
+    },
+    {
+      "id": "t26",
+      "title": "Proposal for a new client",
+      "dueOffsetHours": 330
+    },
+    {
+      "id": "t27",
+      "title": "Collect brand assets from Sample Salon",
+      "projectId": "p_salon"
+    },
+    {
+      "id": "t28",
+      "title": "Research WhatsApp Business API options"
+    }
+  ],
+  "quote": [
+    {
+      "id": "q1",
+      "number": "BK-2026-001",
+      "client": "Sample Boutique",
+      "title": "Online store",
+      "vat": true,
+      "validDays": 14,
+      "status": "declined",
+      "items": [
+        {
+          "desc": "E-commerce store",
+          "qty": 1,
+          "price": 110000
+        }
+      ],
+      "total": 127600,
+      "createdOffsetHours": -700
+    },
+    {
+      "id": "q2",
+      "number": "BK-2026-002",
+      "client": "Sample Café",
+      "title": "Café ordering system",
+      "vat": true,
+      "validDays": 14,
+      "status": "accepted",
+      "items": [
+        {
+          "desc": "Ordering web app (menu, cart, M-Pesa)",
+          "qty": 1,
+          "price": 120000
+        },
+        {
+          "desc": "Kitchen display screen",
+          "qty": 1,
+          "price": 25000
+        },
+        {
+          "desc": "Staff training",
+          "qty": 1,
+          "price": 10000
+        }
+      ],
+      "total": 179800,
+      "createdOffsetHours": -600
+    },
+    {
+      "id": "q3",
+      "number": "BK-2026-003",
+      "client": "Sample Logistics",
+      "title": "Logistics dashboard, phase 2",
+      "vat": false,
+      "validDays": 14,
+      "status": "accepted",
+      "items": [
+        {
+          "desc": "Live map tracking",
+          "qty": 1,
+          "price": 95000
+        },
+        {
+          "desc": "Driver mobile view",
+          "qty": 1,
+          "price": 60000
+        }
+      ],
+      "total": 155000,
+      "createdOffsetHours": -450
+    },
+    {
+      "id": "q4",
+      "number": "BK-2026-004",
+      "client": "Sample Salon",
+      "title": "Salon booking site",
+      "vat": true,
+      "validDays": 14,
+      "status": "sent",
+      "items": [
+        {
+          "desc": "Booking site with calendar",
+          "qty": 1,
+          "price": 85000
+        },
+        {
+          "desc": "SMS reminders setup",
+          "qty": 1,
+          "price": 15000
+        }
+      ],
+      "total": 116000,
+      "createdOffsetHours": -300
+    },
+    {
+      "id": "q5",
+      "number": "BK-2026-005",
+      "client": "Sample Academy",
+      "title": "School fees portal",
+      "vat": true,
+      "validDays": 14,
+      "status": "sent",
+      "items": [
+        {
+          "desc": "Fees portal (parents and admin)",
+          "qty": 1,
+          "price": 180000
+        },
+        {
+          "desc": "M-Pesa paybill integration",
+          "qty": 1,
+          "price": 30000
+        },
+        {
+          "desc": "Report exports",
+          "qty": 1,
+          "price": 20000
+        }
+      ],
+      "total": 266800,
+      "createdOffsetHours": -120
+    },
+    {
+      "id": "q6",
+      "number": "BK-2026-006",
+      "client": "Prospective client",
+      "title": "Restaurant POS",
+      "vat": true,
+      "validDays": 14,
+      "status": "draft",
+      "items": [
+        {
+          "desc": "POS system (till, receipts, reports)",
+          "qty": 1,
+          "price": 140000
+        },
+        {
+          "desc": "Hardware setup and training",
+          "qty": 1,
+          "price": 20000
+        }
+      ],
+      "total": 185600,
+      "createdOffsetHours": -30
+    }
   ]
 }

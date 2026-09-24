@@ -41,3 +41,16 @@ model Todo {
 
   @@index([remindAt, remindedAt])
 }
+
+model Quote {
+  id        String   @id @default(cuid())
+  number    String   @unique
+  client    String
+  title     String
+  vat       Boolean  @default(true)
+  validDays Int      @default(14)
+  status    String   @default("draft")
+  items     Json
+  total     Int
+  createdAt DateTime @default(now())
+}
